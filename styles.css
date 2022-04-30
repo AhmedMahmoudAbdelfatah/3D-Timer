@@ -194,12 +194,12 @@ input[type="radio"] {
 
 @media (max-width: 560px) {
     * {
-        font-size: 1.6rem;
+        font-size: 1.5rem;
     }
 }
 
 @media (max-width: 380px) {
     * {
-        font-size: 1.4rem;
+        font-size: 1.2rem;
     }
 }
