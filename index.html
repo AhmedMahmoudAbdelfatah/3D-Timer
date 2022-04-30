@@ -10,42 +10,68 @@
 </head>
 <body>
     <div class="container">
-        <div class="segment" hours-segment>
-            <h2>Hours</h2>
-            <div class="wraper">
-                <div class="digit-card">
-                    <div class="top">0</div>
-                    <div class="bottom">0</div>
-                </div>
-                <div class="digit-card">
-                    <div class="top">0</div>
-                    <div class="bottom">0</div>
+        <div class="color">
+            <label for="color">Change the main color</label>
+            <input type="color" id="color" value="#de4848">
+        </div>
+        <div class="control-contianer">
+            <div class="radio-container">
+                <input type="radio" name="Type" id="clock" value="clock">
+                <label for="clock">
+                    Clock
+                </label>
+                <input type="radio" name="Type" id="timer" value = "timer">
+                <label for="timer">
+                    Timer
+                </label>
+                <div class="enter-time">
+                    <input type="text" placeholder="Enter Time to begin with ex. hh(- OR :)mm(- OR :)ss">
+                    <div class="btn">Enter Time</div>
                 </div>
             </div>
-        </div>
-        <div class="segment" minutes-segement>
-            <h2>Minutes</h2>
-            <div class="wraper">
-                <div class="digit-card">
-                    <div class="top">0</div>
-                    <div class="bottom">0</div>
-                </div>
-                <div class="digit-card">
-                    <div class="top">0</div>
-                    <div class="bottom">0</div>
-                </div>
+            <div class="btn-container">
+                <div class="btn start">Start</div>
+                <div class="btn stop">Stop</div>
             </div>
         </div>
-        <div class="segment" seconds-segment>
-            <h2>Seconds</h2>
-            <div class="wraper">
-                <div class="digit-card">
-                    <div class="top">0</div>
-                    <div class="bottom">0</div>
+        <div class="timer-container">
+            <div class="segment" hours-segment>
+                <h2>Hours</h2>
+                <div class="wraper">
+                    <div class="digit-card">
+                        <div class="top">0</div>
+                        <div class="bottom">0</div>
+                    </div>
+                    <div class="digit-card">
+                        <div class="top">0</div>
+                        <div class="bottom">0</div>
+                    </div>
                 </div>
-                <div class="digit-card">
-                    <div class="top">0</div>
-                    <div class="bottom">0</div>
+            </div>
+            <div class="segment" minutes-segement>
+                <h2>Minutes</h2>
+                <div class="wraper">
+                    <div class="digit-card">
+                        <div class="top">0</div>
+                        <div class="bottom">0</div>
+                    </div>
+                    <div class="digit-card">
+                        <div class="top">0</div>
+                        <div class="bottom">0</div>
+                    </div>
+                </div>
+            </div>
+            <div class="segment" seconds-segment>
+                <h2>Seconds</h2>
+                <div class="wraper">
+                    <div class="digit-card">
+                        <div class="top">0</div>
+                        <div class="bottom">0</div>
+                    </div>
+                    <div class="digit-card">
+                        <div class="top">0</div>
+                        <div class="bottom">0</div>
+                    </div>
                 </div>
             </div>
         </div>

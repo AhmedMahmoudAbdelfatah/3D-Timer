@@ -5,23 +5,123 @@
     font-size: 2rem;
     font-family: Arial, Helvetica, sans-serif;
 }
-
+:root {
+    --main-color: #de4848;
+}
 .container {
     height: 100vh;
     background-color: #f2f1ed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    color: var(--main-color);
+}
+.color {
+    margin-right: 0.4em;
+}
+.control-contianer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6em;
+}
+
+.radio-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.radio-container label  {
+    color: var(--main-color);
+    cursor: pointer;
+    position: relative;
+    padding: 0.4em;
+}
+
+.radio-container label::before {
+    content: "";
+    position: absolute;
+    left: -1em;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0.5em;
+    height: 0.5em;
+    border-radius: 50%;
+    background-color: white;
+    border: solid 0.1em var(--main-color);
+}
+
+.radio-container input:checked + label::before {
+    background-color: var(--main-color);
+}
+
+.container .enter-time {
+    display: none;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    row-gap: 0.2em;
+    margin-right: 0.5em;
+}
+
+.control-contianer .enter-time input{
+    font-size: 0.5rem;
+    outline: none;
+    border: solid 2px var(--main-color);
+    width: 100%;
+    height: 3em;
+    caret-color: var(--main-color);
+    padding: 0.5em;
+}
+
+
+
+.btn-container {
+    display: flex;
+    gap: 0.8em;
+    justify-content: center;
+    margin-right: 0.8em;
+}
+
+.btn-container .btn,
+.control-contianer .btn {
+    background-color: var(--main-color);
+    color: white;
+    border-radius: 0.2em;
+    padding: 0.4em 0.6em;
+    cursor: pointer;
+    font-size: 1rem;
+    box-shadow: 0 2px 5px #00000038
+}
+
+label,
+.btn-container div {
+    font-size: 1rem;
+    font-weight: normal;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+
+
+
+.timer-container {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 0.6em;
 }
 
-.container .segment h2 {
+.timer-container .segment h2 {
     font-size: 0.5em;
     text-align: center;
-    color: #de4848;
 }
 
-.container .segment .wraper {
+.timer-container .segment .wraper {
     display: flex;
     gap: 0.2em;
 }
@@ -29,8 +129,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: #de4848;
-    box-shadow: 0 1px 0px #0000001f;
+    box-shadow: 0 2px 5px #00000038;
     border-radius: 0.1em;
     position: relative;
 }

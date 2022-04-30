@@ -1,19 +1,77 @@
+//timer and clock component
 const digitCardsSeconds = document.querySelectorAll("[seconds-segment] .digit-card"); 
 const digitCardsMinutes = document.querySelectorAll("[minutes-segement] .digit-card"); 
 const digitCardsHours = document.querySelectorAll("[hours-segment] .digit-card"); 
+//control section
+const start = document.querySelector(".btn-container .start");
+const stop = document.querySelector(".btn-container .stop");
+const timer = document.querySelector(".radio-container [value = 'timer']");
+const clock = document.querySelector(".radio-container [value = 'clock']");
+const entertime = document.querySelector(".control-contianer .enter-time");
+const mainColor = document.querySelector(".container .color #color");
 
-const isclock = true;
-
-if (isclock) {
-    const currTime = new Date();
-    inintializeTimer(digitCardsSeconds, digitCardsMinutes, digitCardsHours, currTime.getSeconds(), currTime.getMinutes(), currTime.getHours());
-    runClock(digitCardsSeconds, digitCardsMinutes, digitCardsHours, currTime.getSeconds(), currTime.getMinutes(), currTime.getHours());
+let clockHandler;
+let timerHandler;
+let time;
+//controling main color with local storage 
+if (localStorage.getItem("mainColor") !== null) {
+    document.documentElement.style.setProperty("--main-color", localStorage.getItem("mainColor"));
+    mainColor.value = localStorage.getItem("mainColor");
 }
 
-else {
-    inintializeTimer(digitCardsSeconds, digitCardsMinutes, digitCardsHours, 05, 00, 00);
-    runTimer(digitCardsSeconds, digitCardsMinutes, digitCardsHours, 05, 00, 00);
+mainColor.addEventListener("input", function (e) {
+    localStorage.setItem("mainColor", e.target.value);
+    document.documentElement.style.setProperty("--main-color", e.target.value);
+});
+
+//show and hide input section for timer
+timer.addEventListener("click", () => entertime.style.display = 'flex');
+
+clock.addEventListener("click", () => entertime.style.display = 'none')
+
+//actions for the start btn
+start.addEventListener("click", function (e) {
+    clearInterval(timerHandler);
+    clearInterval(clockHandler);
+    if (timer.checked) {
+        if (time === undefined || time === null) entertime.firstElementChild.value = "Place Enter The Correct Time First";
+        else runTimer(digitCardsSeconds, digitCardsMinutes, digitCardsHours, time[2], time[1], time[0]);
+    }
+    else if (clock.checked) {
+        const currTime = new Date();
+        inintializeTimer(digitCardsSeconds, digitCardsMinutes, digitCardsHours, currTime.getSeconds(), currTime.getMinutes(), currTime.getHours());
+        runClock(digitCardsSeconds, digitCardsMinutes, digitCardsHours, currTime.getSeconds(), currTime.getMinutes(), currTime.getHours());
+    }
+});
+
+//actions for the stop btn
+stop.addEventListener("click", function (e) {
+    if (clock.checked)  clearInterval(clockHandler);
+    else if (timer.checked) clearInterval(timerHandler);
+})
+
+//deal with the input incase of timer
+entertime.addEventListener("click", function (e) {
+    if (e.target.classList[0] === "btn") {
+        clearInterval(clockHandler);
+        clearInterval(timerHandler);
+        time = checkInput(e.currentTarget.firstElementChild.value);
+        if (time === null) {
+            e.currentTarget.firstElementChild.value = "Place Enter Correct Format ex. 22-10-12";
+        }
+        else {
+            time = time[0].match(/\d{1,2}/g);
+            inintializeTimer(digitCardsSeconds, digitCardsMinutes, digitCardsHours, time[2], time[1], time[0]);
+        }
+    } 
+})
+
+//little function to validate the input 
+function checkInput(text) {
+    const reg = /^\s*(\d|1\d|2[0-3])\s*(:|-)\s*[0-5]?\d\s*\2\s*[0-5]?\d\s*$/;
+    return text.match(reg);
 }
+
 
 function runTimer(digitCardsSeconds, digitCardsMinutes, digitCardsHours, initailSeconds, inintialMinutes, initialHours) {
     var secondsOnes = initailSeconds % 10;
@@ -22,7 +80,7 @@ function runTimer(digitCardsSeconds, digitCardsMinutes, digitCardsHours, initail
     var minutesTens = parseInt(inintialMinutes / 10);
     var hoursOnes = initialHours % 10;
     var hoursTens = parseInt(initialHours / 10);
-    window.setInterval(function (digitCardsSeconds) {
+    timerHandler = window.setInterval(function (digitCardsSeconds) {
         // run seconds
         flip(digitCardsSeconds[1], 9, secondsOnes, false);
         if (secondsOnes === 0) {
@@ -54,6 +112,7 @@ function runTimer(digitCardsSeconds, digitCardsMinutes, digitCardsHours, initail
     }, 1000, digitCardsSeconds);
 }
 
+
 function runClock(digitCardsSeconds, digitCardsMinutes, digitCardsHours, initailSeconds, inintialMinutes, initialHours) {
     var secondsOnes = initailSeconds % 10;
     var secondsTens = parseInt(initailSeconds / 10);
@@ -61,7 +120,7 @@ function runClock(digitCardsSeconds, digitCardsMinutes, digitCardsHours, initail
     var minutesTens = parseInt(inintialMinutes / 10);
     var hoursOnes = initialHours % 10;
     var hoursTens = parseInt(initialHours / 10);
-    window.setInterval(function (digitCardsSeconds) {
+    clockHandler = window.setInterval(function (digitCardsSeconds) {
         //run seconds
         flip(digitCardsSeconds[1], 9, secondsOnes, true);
         if (secondsOnes === 9) {
@@ -102,7 +161,7 @@ function runClock(digitCardsSeconds, digitCardsMinutes, digitCardsHours, initail
     }, 1000, digitCardsSeconds);
 }
 
-
+//the main animation componant for clock and timer
 function flip(digitCard, breakPoint, currentNumber, isclock) {
     const digitTop = digitCard.firstElementChild;
     const digitBottom = digitCard.lastElementChild;
@@ -129,6 +188,7 @@ function flip(digitCard, breakPoint, currentNumber, isclock) {
     });
     digitCard.append(topFlip, bottomFlip);
 }
+
 
 function inintializeTimer(digitCardsSeconds, digitCardsMinutes, digitCardsHours, initailSeconds, inintialMinutes, initialHours) {
     var secondsOnes = initailSeconds % 10;
@@ -157,12 +217,4 @@ function inintializeTimer(digitCardsSeconds, digitCardsMinutes, digitCardsHours,
     digitCardsHours[0].lastElementChild.textContent = hoursTens;
 
 }
-
-
-
-
-
-
-
-
 
