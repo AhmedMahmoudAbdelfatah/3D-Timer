@@ -16,6 +16,7 @@
     justify-content: center;
     align-items: center;
     gap: 1em;
+    padding-left: 0.4em;
     color: var(--main-color);
 }
 .color {
@@ -167,13 +168,13 @@ input[type="radio"] {
     position: absolute;
     top: 0;
     transform-origin: bottom;
-    animation: top-flip 0.3s ease-in;
+    animation: top-flip 0.22s ease-in;
 }
 
 .digit-card .bottom-flip {
     position: absolute;
     bottom: 0;
-    animation: bottom-flip 0.3s 0.3s ease-out;
+    animation: bottom-flip 0.22s 0.22s ease-out;
     transform-origin: top;
     transform: rotateX(90deg);
 }
@@ -188,5 +189,17 @@ input[type="radio"] {
 @keyframes bottom-flip {
     100% {
         transform: rotateX(0);
+    }
+}
+
+@media (max-width: 560px) {
+    * {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 380px) {
+    * {
+        font-size: 1.4rem;
     }
 }
