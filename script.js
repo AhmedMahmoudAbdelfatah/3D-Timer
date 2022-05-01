@@ -34,7 +34,10 @@ start.addEventListener("click", function (e) {
     clearInterval(timerHandler);
     clearInterval(clockHandler);
     if (timer.checked) {
-        if (time === undefined || time === null) entertime.firstElementChild.value = "Place Enter The Correct Time First";
+        if (time === undefined || time === null) {
+            entertime.firstElementChild.value = "";
+            entertime.firstElementChild.placeholder = "Place Enter The Correct Time First";
+        }
         else runTimer(digitCardsSeconds, digitCardsMinutes, digitCardsHours, time[2], time[1], time[0]);
     }
     else if (clock.checked) {
@@ -46,8 +49,8 @@ start.addEventListener("click", function (e) {
 
 //actions for the stop btn
 stop.addEventListener("click", function (e) {
-    if (clock.checked)  clearInterval(clockHandler);
-    else if (timer.checked) clearInterval(timerHandler);
+    clearInterval(clockHandler);
+    clearInterval(timerHandler);
 })
 
 //deal with the input incase of timer
@@ -57,7 +60,8 @@ entertime.addEventListener("click", function (e) {
         clearInterval(timerHandler);
         time = checkInput(e.currentTarget.firstElementChild.value);
         if (time === null) {
-            e.currentTarget.firstElementChild.value = "Place Enter Correct Format ex. 22-10-12";
+            e.currentTarget.firstElementChild.value = "";
+            e.currentTarget.firstElementChild.placeholder = "Place Enter Correct Format ex. 22-10-12";
         }
         else {
             time = time[0].match(/\d{1,2}/g);
