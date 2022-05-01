@@ -198,8 +198,13 @@ input[type="radio"] {
     }
 }
 
-@media (max-width: 380px) {
+@media (max-width: 390px) {
     * {
         font-size: 1.2rem;
+    }
+}
+@media (max-width: 320px) {
+    * {
+        font-size: 1rem;
     }
 }
