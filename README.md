@@ -1,6 +1,6 @@
 # 3D-Timer
 
-Welcome to the 3D-Timer project! This project is a web-based timer built using HTML, CSS, and JavaScript, with a primary focus on creating an engaging user experience through CSS and JavaScript animations. The goal of this project is to enhance your skills in working with animations, JavaScript, and CSS.
+Welcome to the 3D-Timer project! This project is a web-based timer built using HTML, CSS, and JavaScript, with a primary focus on creating an engaging user experience through CSS and JavaScript animations. The goal of this project is to enhance my skills in working with animations, JavaScript, and CSS.
 
 ## Features
 
